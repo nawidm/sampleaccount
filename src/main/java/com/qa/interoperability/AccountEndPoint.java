@@ -9,11 +9,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.apache.log4j.Logger;
+
 import com.qa.business.service.AccountService;
 
 @Path("/account")
 public class AccountEndPoint {
 
+	private static final Logger LOGGER = Logger.getLogger(AccountEndPointTest.class);
+	
 	@Inject
 	private AccountService service;
 
@@ -21,6 +25,7 @@ public class AccountEndPoint {
 	@GET
 	@Produces({ "application/json" })
 	public String getAllAccounts() {
+		LOGGER.info("In AccountEndPoint getAllAccounts");
 		return service.getAllAccounts();
 	}
 
@@ -28,6 +33,7 @@ public class AccountEndPoint {
 	@POST
 	@Produces({ "application/json" })
 	public String addAccount(String account) {
+		LOGGER.info("In AccountEndPoint addAccount");
 		return service.addAccount(account);
 	}
 
@@ -35,6 +41,7 @@ public class AccountEndPoint {
 	@PUT
 	@Produces({ "application/json" })
 	public String updateAccount(@PathParam("id") Long id, String account) {
+		LOGGER.info("In AccountEndPoint updateAccount");
 		return service.updateAccount(id, account);
 	}
 
@@ -42,11 +49,13 @@ public class AccountEndPoint {
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteAccount(@PathParam("id") Long id) {
+		LOGGER.info("In AccountEndPoint deleteAccount");
 		return service.deleteAccount(id);
 
 	}
 
 	public void setService(AccountService service) {
+		LOGGER.info("In AccountEndPoint setService");
 		this.service = service;
 	}
 
